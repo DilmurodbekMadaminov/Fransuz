@@ -62,7 +62,7 @@ const App: React.FC = () => {
     // Auto-advance after delay
     setTimeout(() => {
       handleNext();
-    }, 1500);
+    }, 1200);
   };
 
   const handleNext = () => {
@@ -98,16 +98,16 @@ const App: React.FC = () => {
   if (!state.isStarted) {
     return (
       <div className="min-h-screen bg-[#F0F2F5] p-4 md:p-8">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <header className="mb-10 text-center">
             <div className="inline-flex p-3 bg-blue-600 rounded-2xl mb-4 shadow-lg shadow-blue-200">
               <Languages className="text-white w-8 h-8" />
             </div>
             <h1 className="text-3xl font-bold text-slate-900 mb-2">Fransuz Tili Quiz</h1>
-            <p className="text-slate-500">Grammatika va lug'at boyligi bo'yicha {allQuestions.length} ta savol</p>
+            <p className="text-slate-500">Grammatika, lug'at va mamlakatshunoslik bo'yicha {allQuestions.length} ta savol</p>
           </header>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             {Array.from({ length: totalVariants }, (_, i) => i + 1).map(v => {
               const count = getQuestionsByVariant(v).length;
               return (
