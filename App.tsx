@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { allQuestions, getQuestionsByVariant, totalVariants } from './data/questions';
+import { allQuestions, getQuestionsByVariant, getVariantLength, totalVariants } from './data/questions';
 import { QuizState } from './types';
 import { 
   CheckCircle2, 
@@ -24,6 +24,7 @@ const App: React.FC = () => {
     showResults: false,
     userAnswers: [],
     isStarted: false,
+    currentQuestions: [],
   });
 
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
@@ -38,12 +39,13 @@ const App: React.FC = () => {
       showResults: false,
       userAnswers: Array(questions.length).fill(null),
       isStarted: true,
+      currentQuestions: questions,
     });
     setIsAnswered(false);
     setSelectedOption(null);
   };
 
-  const currentQuestions = state.selectedVariant ? getQuestionsByVariant(state.selectedVariant) : [];
+  const currentQuestions = state.currentQuestions;
   const currentQuestion = currentQuestions[state.currentQuestionIndex];
 
   const handleOptionSelect = (idx: number) => {
@@ -69,7 +71,7 @@ const App: React.FC = () => {
     setState(prev => {
       if (prev.showResults || !prev.isStarted || !prev.selectedVariant) return prev;
       
-      const questions = getQuestionsByVariant(prev.selectedVariant);
+      const questions = prev.currentQuestions;
       if (prev.currentQuestionIndex + 1 < questions.length) {
         return {
           ...prev,
@@ -92,6 +94,7 @@ const App: React.FC = () => {
       showResults: false,
       userAnswers: [],
       isStarted: false,
+      currentQuestions: [],
     });
   };
 
@@ -109,7 +112,7 @@ const App: React.FC = () => {
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             {Array.from({ length: totalVariants }, (_, i) => i + 1).map(v => {
-              const count = getQuestionsByVariant(v).length;
+              const count = getVariantLength(v);
               return (
                 <button
                   key={v}

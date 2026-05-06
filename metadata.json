@@ -1,5 +1,6 @@
 {
-  "name": "Copy of Fransuz Tili Quiz",
+  "name": "Remix: Copy of Fransuz Tili Quiz",
   "description": "Fransuz tili grammatikasi, lug'at boyligi va madaniyati bo'yicha 240 dan ortiq interaktiv testlar to'plami.",
-  "requestFramePermissions": []
+  "requestFramePermissions": [],
+  "majorCapabilities": []
 }

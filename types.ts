@@ -13,4 +13,5 @@ export interface QuizState {
   showResults: boolean;
   userAnswers: (number | null)[];
   isStarted: boolean;
+  currentQuestions: Question[];
 }
